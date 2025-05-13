@@ -64,6 +64,7 @@
       display: none;
       margin-top: 20px;
       justify-content: center;
+      gap: 20px; /* Abstand zwischen den Buttons */
     }
     .navigation button {
       padding: 12px 24px;
@@ -89,6 +90,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      margin-top: 10px; /* Nach oben verschieben */
     }
     .level-auswahl button {
       margin: 10px;
@@ -119,18 +121,43 @@
     <div class="ergebnis" id="ergebnis"></div>
     <div class="navigation" id="navigation">
       <button onclick="restart()">Wiederholen</button>
-      <button onclick="backToLevels()">Zurück zu den Levels</button>
+      <button onclick="Levels()">Levels</button>
     </div>
   </div>
   <script>
-    const allQuestions = [
-        { question: "Wie viele Lungenflügel hat der Mensch?", answers: ["1", "2", "3", "4"], correct: 1, level: "leicht" },
-        { question: "Was ist die Hauptaufgabe der Bronchien?", answers: ["Gasaustausch", "Transport der Atemluft zu den Alveolen", "Produktion von Surfactant", "Regulation der Herzfrequenz"], correct: 1, level: "leicht" },
-        { question: "Was ist die Hauptfunktion der Trachea?", answers: ["Filterung des Blutes", "Regulation des Blutdrucks", "Leitung der Luft in die Bronchien", "Produktion von Schleim"], correct: 2, level: "mittel" },
-        { question: "Welche Art von Muskelgewebe steuert die Weite der Bronchien?", answers: ["Quergestreifte Muskulatur", "Glatte Muskulatur", "Herzmuskulatur", "Skelettmuskulatur"], correct: 1, level: "mittel" },
-        { question: "Welches Gas wird mit der Ausatmung hauptsächlich ausgeschieden?", answers: ["Sauerstoff", "Kohlendioxid", "Stickstoff", "Helium"], correct: 1, level: "schwer" },
-        { question: "Welche Art von Atemmechanismus tritt bei schwerer Azidose auf?", answers: ["Kussmaul-Atmung", "Cheyne-Stokes-Atmung", "Biot-Atmung", "Schnappatmung"], correct: 0, level: "schwer" }
-    ];
+    const allQuestions = const questions = [
+  { question: "Welches Organ ist hauptsächlich für die Steuerung des Körpers verantwortlich?", answers: ["Herz", "Lunge", "Gehirn", "Leber"], correct: 2, level: "leicht" },
+  { question: "Was ist die Hauptfunktion des Herzens?", answers: ["Blut durch den Körper zu pumpen", "Hormone zu produzieren", "Nahrung zu verdauen", "Nervenimpulse weiterzuleiten"], correct: 0, level: "leicht" },
+  { question: "Wie viele Blutgruppen gibt es im AB0-System?", answers: ["2", "3", "4", "5"], correct: 2, level: "leicht" },
+  { question: "Wie viele Knochen hat ein erwachsener Mensch ungefähr?", answers: ["150", "206", "365", "108"], correct: 1, level: "leicht" },
+  { question: "Welches Organ ist direkt für den Gasaustausch zuständig?", answers: ["Herz", "Lunge", "Leber", "Milz"], correct: 1, level: "leicht" },
+  { question: "Wozu dient das Skelettsystem NICHT?", answers: ["Schutz der Organe", "Produktion von Hormonen", "Stabilität des Körpers", "Ansatzstelle für Muskeln"], correct: 1, level: "leicht" },
+  { question: "Welcher Zellbestandteil enthält die Erbinformation?", answers: ["Zellmembran", "Mitochondrium", "Zellkern", "Ribosom"], correct: 2, level: "leicht" },
+  { question: "Was ist der normale Bereich für die Körpertemperatur eines gesunden Erwachsenen?", answers: ["35,0–35,5 °C", "36,5–37,5 °C", "38,0–39,0 °C", "34,0–35,0 °C"], correct: 1, level: "leicht" },
+  { question: "Welches Organ produziert Insulin?", answers: ["Leber", "Bauchspeicheldrüse", "Niere", "Magen"], correct: 1, level: "leicht" },
+  { question: "Wie viel Blut hat ein erwachsener Mensch ungefähr?", answers: ["2–3 Liter", "3–4 Liter", "4–6 Liter", "7–9 Liter"], correct: 2, level: "leicht" },
+  { question: "Welches Sinnesorgan reagiert auf Lichtreize?", answers: ["Auge", "Ohr", "Haut", "Zunge"], correct: 0, level: "leicht" },
+  { question: "Welches Organ ist für das Gleichgewicht verantwortlich?", answers: ["Auge", "Innenohr", "Kleinhirn", "Wirbelsäule"], correct: 1, level: "leicht" },
+  { question: "Welcher Teil des Gehirns ist für das Denkvermögen zuständig?", answers: ["Hirnstamm", "Kleinhirn", "Großhirn", "Zwischenhirn"], correct: 2, level: "leicht" },
+  { question: "Woraus besteht der größte Teil des menschlichen Körpers?", answers: ["Fett", "Wasser", "Eiweiß", "Kohlenhydrate"], correct: 1, level: "leicht" },
+  { question: "Welche Aufgabe hat die Leber NICHT?", answers: ["Entgiftung", "Sauerstofftransport", "Speicherung von Nährstoffen", "Bildung von Gallenflüssigkeit"], correct: 1, level: "leicht" },
+  { question: "Wo findet die Hauptaufnahme von Nährstoffen statt?", answers: ["Magen", "Dünndarm", "Dickdarm", "Leber"], correct: 1, level: "leicht" },
+  { question: "Was ist die Funktion der Nase?", answers: ["Blutzirkulation", "Luft filtern und Gerüche wahrnehmen", "Nahrung zerkleinern", "Galle produzieren"], correct: 1, level: "leicht" },
+  { question: "Was enthält sauerstoffreiches Blut?", answers: ["Arterien", "Venen", "Lymphgefäße", "Gallenblase"], correct: 0, level: "leicht" },
+  { question: "Wie heißt der Nerv, der für die Bewegung des Zwerchfells zuständig ist?", answers: ["Vagusnerv", "Nervus phrenicus", "Trigeminusnerv", "Hypoglossus"], correct: 1, level: "leicht" },
+  { question: "Wie viele Zähne hat ein Erwachsener in der Regel?", answers: ["28", "32", "30", "36"], correct: 1, level: "leicht" },
+  { question: "Wo befindet sich das Herz im Körper?", answers: ["Im Brustkorb, leicht links", "Im Bauchraum", "In der rechten Körperhälfte", "Im Hals"], correct: 0, level: "leicht" },
+  { question: "Woraus bestehen die Lungenbläschen hauptsächlich?", answers: ["Muskelgewebe", "Knochengewebe", "Epithelgewebe", "Fettgewebe"], correct: 2, level: "leicht" },
+  { question: "Welche Funktion hat das Kleinhirn?", answers: ["Denkprozesse", "Koordination von Bewegungen", "Hormonausschüttung", "Regulation des Blutdrucks"], correct: 1, level: "leicht" },
+  { question: "Welche Blutkörperchen sind für die Immunabwehr zuständig?", answers: ["Erythrozyten", "Leukozyten", "Thrombozyten", "Endothelzellen"], correct: 1, level: "leicht" },
+  { question: "Was trifft auf Bakterien zu?", answers: ["Können sich selbst vermehren", "Sind immer schädlich", "Bestehen aus Zellkernen", "Benötigen Wirtszellen zur Vermehrung"], correct: 0, level: "leicht" },
+  { question: "Wie heißen die Muskelzellen des Herzens?", answers: ["Glatte Muskelzellen", "Skelettmuskulatur", "Herzmuskulatur", "Kontraktile Fasern"], correct: 2, level: "leicht" },
+  { question: "Welcher Hirnteil steuert lebenswichtige Funktionen wie Atmung?", answers: ["Hirnstamm", "Großhirn", "Hypothalamus", "Thalamus"], correct: 0, level: "leicht" },
+  { question: "Wie nennt man das größte Gelenk im menschlichen Körper?", answers: ["Schultergelenk", "Ellenbogengelenk", "Kniegelenk", "Sprunggelenk"], correct: 2, level: "leicht" },
+  { question: "Was versteht man unter \"Stoffwechsel\"?", answers: ["Bewegung des Körpers", "Alle chemischen Vorgänge im Körper", "Reizweiterleitung im Nervensystem", "Zellteilung"], correct: 1, level: "leicht" },
+  { question: "Welche Blutbestandteile sind für die Blutgerinnung verantwortlich?", answers: ["Erythrozyten", "Leukozyten", "Thrombozyten", "Lymphozyten"], correct: 2, level: "leicht" },
+];
+
     let questions = [];
     let used = [];
     let correctCount = 0;
@@ -178,7 +205,7 @@
               Array.from(container.children)[q.correct].classList.add('correct');
             }, 100);
           }
-          setTimeout(showNext, 500);
+          setTimeout(showNext, 1000);
         };
         container.appendChild(btn);
       });
